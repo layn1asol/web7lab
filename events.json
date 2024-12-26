@@ -3,84 +3,140 @@
         "id": 1,
         "action": "Animation started",
         "description": "Start of animation",
-        "timestamp": "2024-12-26T04:52:13.096Z",
+        "timestamp": "2024-12-26T05:30:52.255Z",
+        "source": "Server"
+    },
+    {
+        "id": 5,
+        "action": "Zone crossed",
+        "description": "Entered Top-left",
+        "timestamp": "2024-12-26T05:30:53.259Z",
         "source": "Server"
     },
     {
         "id": 3,
         "action": "Object moved",
         "description": "Position: (655.5, 365)",
-        "timestamp": "2024-12-26T04:52:14.099Z",
-        "source": "Server"
-    },
-    {
-        "id": 5,
-        "action": "Object moved",
-        "description": "Position: (405.5, 365)",
-        "timestamp": "2024-12-26T04:52:15.100Z",
+        "timestamp": "2024-12-26T05:30:53.258Z",
         "source": "Server"
     },
     {
         "id": 7,
-        "action": "Animation closed",
-        "description": "User clicked Close button",
-        "timestamp": "2024-12-26T04:52:15.180Z",
-        "source": "Server"
-    },
-    {
-        "id": 4,
-        "action": "Object moved",
-        "description": "Position: (655.5, 365)",
-        "timestamp": "2024-12-26T04:52:14.099Z",
-        "source": "Local"
-    },
-    {
-        "id": 2,
-        "action": "Animation started",
-        "description": "Start of animation",
-        "timestamp": "2024-12-26T04:52:13.097Z",
-        "source": "Local"
-    },
-    {
-        "id": 6,
         "action": "Object moved",
         "description": "Position: (405.5, 365)",
-        "timestamp": "2024-12-26T04:52:15.100Z",
-        "source": "Local"
-    },
-    {
-        "id": 8,
-        "action": "Animation closed",
-        "description": "User clicked Close button",
-        "timestamp": "2024-12-26T04:52:15.180Z",
-        "source": "Local"
+        "timestamp": "2024-12-26T05:30:54.257Z",
+        "source": "Server"
     },
     {
         "id": 9,
         "action": "Object moved",
         "description": "Position: (155.5, 365)",
-        "timestamp": "2024-12-26T04:52:16.099Z",
+        "timestamp": "2024-12-26T05:30:55.257Z",
         "source": "Server"
     },
     {
         "id": 11,
         "action": "Object moved",
-        "description": "Position: (-0.5, 272)",
-        "timestamp": "2024-12-26T04:52:17.098Z",
+        "description": "Position: (-0.5, 271)",
+        "timestamp": "2024-12-26T05:30:56.257Z",
         "source": "Server"
     },
     {
         "id": 13,
         "action": "Object moved",
-        "description": "Position: (-0.5, 22)",
-        "timestamp": "2024-12-26T04:52:18.098Z",
+        "description": "Position: (-0.5, 21)",
+        "timestamp": "2024-12-26T05:30:57.257Z",
         "source": "Server"
     },
     {
         "id": 15,
-        "action": "Animation ended",
-        "description": "End of animation",
-        "timestamp": "2024-12-26T04:52:18.194Z",
+        "action": "Object moved",
+        "description": "Position: (228.5, 0)",
+        "timestamp": "2024-12-26T05:30:58.257Z",
         "source": "Server"
+    },
+    {
+        "id": 17,
+        "action": "Object moved",
+        "description": "Position: (478.5, 0)",
+        "timestamp": "2024-12-26T05:30:59.257Z",
+        "source": "Server"
+    },
+    {
+        "id": 19,
+        "action": "Object moved",
+        "description": "Position: (728.5, 0)",
+        "timestamp": "2024-12-26T05:31:00.257Z",
+        "source": "Server"
+    },
+    {
+        "id": 23,
+        "action": "Zone crossed",
+        "description": "Entered Top-right",
+        "timestamp": "2024-12-26T05:31:01.257Z",
+        "source": "Server"
+    },
+    {
+        "id": 21,
+        "action": "Object moved",
+        "description": "Position: (978.5, 0)",
+        "timestamp": "2024-12-26T05:31:01.257Z",
+        "source": "Server"
+    },
+    {
+        "id": 2,
+        "action": "Animation started",
+        "description": "Start of animation",
+        "timestamp": "2024-12-26T05:30:52.255Z",
+        "source": "Local"
+    },
+    {
+        "id": 25,
+        "action": "Animation closed",
+        "description": "User clicked Close button",
+        "timestamp": "2024-12-26T05:31:01.551Z",
+        "source": "Server"
+    },
+    {
+        "id": 6,
+        "action": "Zone crossed",
+        "description": "Entered Top-left",
+        "timestamp": "2024-12-26T05:30:53.259Z",
+        "source": "Local"
+    },
+    {
+        "id": 4,
+        "action": "Object moved",
+        "description": "Position: (655.5, 365)",
+        "timestamp": "2024-12-26T05:30:53.258Z",
+        "source": "Local"
+    },
+    {
+        "id": 8,
+        "action": "Object moved",
+        "description": "Position: (405.5, 365)",
+        "timestamp": "2024-12-26T05:30:54.257Z",
+        "source": "Local"
+    },
+    {
+        "id": 10,
+        "action": "Object moved",
+        "description": "Position: (155.5, 365)",
+        "timestamp": "2024-12-26T05:30:55.257Z",
+        "source": "Local"
+    },
+    {
+        "id": 12,
+        "action": "Object moved",
+        "description": "Position: (-0.5, 271)",
+        "timestamp": "2024-12-26T05:30:56.257Z",
+        "source": "Local"
+    },
+    {
+        "id": 14,
+        "action": "Object moved",
+        "description": "Position: (-0.5, 21)",
+        "timestamp": "2024-12-26T05:30:57.257Z",
+        "source": "Local"
     }
 ]

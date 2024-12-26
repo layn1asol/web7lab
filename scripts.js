@@ -101,11 +101,32 @@ document.addEventListener("DOMContentLoaded", () => {
         let step = 1;
         let direction = "left";
 
+        const zoneWidth = animElement.clientWidth / 2;
+        const zoneHeight = animElement.clientHeight / 2;
+
+        let currentZone = null;
+
+        function determineZone(x, y) {
+            if (x < zoneWidth && y < zoneHeight) return "Top-left";
+            if (x >= zoneWidth && y < zoneHeight) return "Top-right";
+            if (x < zoneWidth && y >= zoneHeight) return "Bottom-left";
+            if (x >= zoneWidth && y >= zoneHeight) return "Bottom-right";
+            return null;
+        }
+
         const positionLogger = setInterval(() => {
             const position = `Position: (${x}, ${y})`;
             logEvent("Object moved", position);
             logEventLocal("Object moved", position);
-        }, 1000);
+
+            // Check and log zone crossing
+            const newZone = determineZone(x, y);
+            if (newZone !== currentZone) {
+                currentZone = newZone;
+                logEvent("Zone crossed", `Entered ${currentZone}`);
+                logEventLocal("Zone crossed", `Entered ${currentZone}`);
+            }
+        }, 1000); // 1-second logging interval
 
         const interval = setInterval(() => {
             if (direction === "left") x -= step;
@@ -116,6 +137,7 @@ document.addEventListener("DOMContentLoaded", () => {
             circle.style.left = `${x}px`;
             circle.style.top = `${y}px`;
 
+            // Handle boundary collisions and direction changes
             if (x <= 0 && direction === "left") direction = "up";
             else if (y <= 0 && direction === "up") direction = "right";
             else if (x >= animElement.clientWidth - 20 && direction === "right") direction = "down";
@@ -127,6 +149,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }, 1);
     }
+
 
     function closeAnimation() {
         logEvent("Animation closed", "User clicked Close button");
