@@ -3,126 +3,91 @@
         "id": 1,
         "action": "Animation started",
         "description": "Start of animation",
-        "timestamp": "2024-12-26T03:30:13.801Z",
+        "timestamp": "2024-12-26T03:41:10.426Z",
         "source": "Server"
     },
     {
         "id": 2,
         "action": "Object moved",
-        "description": "Position: (655.5, 390)",
-        "timestamp": "2024-12-26T03:30:14.803Z",
+        "description": "Position: (347, 248.5)",
+        "timestamp": "2024-12-26T03:41:11.430Z",
         "source": "Server"
     },
     {
         "id": 3,
         "action": "Object moved",
-        "description": "Position: (405.5, 390)",
-        "timestamp": "2024-12-26T03:30:15.803Z",
+        "description": "Position: (97, 248.5)",
+        "timestamp": "2024-12-26T03:41:12.428Z",
         "source": "Server"
     },
     {
         "id": 4,
         "action": "Object moved",
-        "description": "Position: (156.5, 390)",
-        "timestamp": "2024-12-26T03:30:16.803Z",
+        "description": "Position: (0, 95.5)",
+        "timestamp": "2024-12-26T03:41:13.430Z",
         "source": "Server"
     },
     {
         "id": 5,
         "action": "Object moved",
-        "description": "Position: (-0.5, 297)",
-        "timestamp": "2024-12-26T03:30:17.803Z",
+        "description": "Position: (154, -0.5)",
+        "timestamp": "2024-12-26T03:41:14.428Z",
         "source": "Server"
     },
     {
         "id": 6,
         "action": "Object moved",
-        "description": "Position: (-0.5, 47)",
-        "timestamp": "2024-12-26T03:30:18.803Z",
+        "description": "Position: (404, -0.5)",
+        "timestamp": "2024-12-26T03:41:15.428Z",
         "source": "Server"
     },
     {
         "id": 7,
         "action": "Object moved",
-        "description": "Position: (202.5, 0)",
-        "timestamp": "2024-12-26T03:30:19.803Z",
+        "description": "Position: (654, -0.5)",
+        "timestamp": "2024-12-26T03:41:16.430Z",
         "source": "Server"
     },
     {
         "id": 8,
         "action": "Object moved",
-        "description": "Position: (452.5, 0)",
-        "timestamp": "2024-12-26T03:30:20.803Z",
+        "description": "Position: (904, -0.5)",
+        "timestamp": "2024-12-26T03:41:17.430Z",
         "source": "Server"
     },
     {
         "id": 9,
         "action": "Object moved",
-        "description": "Position: (702.5, 0)",
-        "timestamp": "2024-12-26T03:30:21.803Z",
+        "description": "Position: (1154, -0.5)",
+        "timestamp": "2024-12-26T03:41:18.430Z",
         "source": "Server"
     },
     {
         "id": 10,
         "action": "Object moved",
-        "description": "Position: (952.5, 0)",
-        "timestamp": "2024-12-26T03:30:22.803Z",
+        "description": "Position: (1200, 203.5)",
+        "timestamp": "2024-12-26T03:41:19.430Z",
         "source": "Server"
     },
     {
         "id": 11,
         "action": "Object moved",
-        "description": "Position: (1202.5, 0)",
-        "timestamp": "2024-12-26T03:30:23.803Z",
+        "description": "Position: (1200, 453.5)",
+        "timestamp": "2024-12-26T03:41:20.430Z",
         "source": "Server"
     },
     {
         "id": 12,
-        "action": "Object moved",
-        "description": "Position: (1452.5, 0)",
-        "timestamp": "2024-12-26T03:30:24.803Z",
+        "action": "Animation ended",
+        "description": "End of animation",
+        "timestamp": "2024-12-26T03:41:20.605Z",
         "source": "Server"
     },
     {
         "id": 13,
-        "action": "Object moved",
-        "description": "Position: (1702.5, 0)",
-        "timestamp": "2024-12-26T03:30:25.803Z",
-        "source": "Server"
-    },
-    {
-        "id": 14,
-        "action": "Object moved",
-        "description": "Position: (1817.5, 135)",
-        "timestamp": "2024-12-26T03:30:26.804Z",
-        "source": "Server"
-    },
-    {
-        "id": 15,
-        "action": "Object moved",
-        "description": "Position: (1817.5, 385)",
-        "timestamp": "2024-12-26T03:30:27.804Z",
-        "source": "Server"
-    },
-    {
-        "id": 16,
-        "action": "Object moved",
-        "description": "Position: (1817.5, 635)",
-        "timestamp": "2024-12-26T03:30:28.804Z",
-        "source": "Server"
-    },
-    {
-        "id": 17,
-        "action": "Animation ended",
-        "description": "End of animation",
-        "timestamp": "2024-12-26T03:30:29.383Z",
-        "source": "Server"
-    },
-    {
-        "id": 18,
         "action": "Animation closed",
         "description": "User clicked Close button",
-        "timestamp": "2024-12-26T03:30:30.234Z",
+        "timestamp": "2024-12-26T03:41:25.483Z",
         "source": "Server"
     }
 ]

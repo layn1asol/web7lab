@@ -248,7 +248,7 @@ body {
 }
 
 .controls {
-    height: 50px; /* Фіксована висота для панелі */
+    height: 50px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -256,6 +256,7 @@ body {
     background-color: #282828;
     color: white;
     border-top: 2px solid #484848;
+    position: relative;
 }
 
 
