@@ -26,12 +26,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         echo json_encode([]);
     }
+} elseif (isset($_GET['clear_events'])) {
+    // Видаляємо файл, якщо він існує
+    if (file_exists($file)) {
+        unlink($file);
+        echo json_encode(['status' => 'success']);
+    } else {
+        echo json_encode(['status' => 'error', 'message' => 'File not found']);
+    }
 } else {
     // Якщо метод не підтримується
     http_response_code(405);
     echo json_encode(['status' => 'error', 'message' => 'Method not allowed']);
 }
-
-
-
-
+?>

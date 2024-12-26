@@ -5,6 +5,20 @@ document.addEventListener("DOMContentLoaded", () => {
     let eventCounter = 0;
 
     playButton.addEventListener("click", () => {
+        // Очищаємо дані з JSON файлу
+        fetch("server.php?clear_events=true", {
+            method: "GET",
+        })
+            .then(response => response.json())
+            .then(result => {
+                if (result.status === "success") {
+                    console.log("JSON data cleared successfully");
+                } else {
+                    console.error("Failed to clear JSON data:", result.message);
+                }
+            })
+            .catch(error => console.error("Error:", error));
+
         middle2.innerHTML = "";
         middle2.classList.add("work-active");
 
@@ -130,13 +144,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 events.forEach(event => {
                     const row = document.createElement("tr");
-                    row.innerHTML = `
-                        <td>${event.id}</td>
+                    row.innerHTML =
+                        `<td>${event.id}</td>
                         <td>${event.action}</td>
                         <td>${event.description}</td>
                         <td>${event.timestamp}</td>
-                        <td>${event.source}</td>
-                    `;
+                        <td>${event.source}</td>`;
                     table.appendChild(row);
                 });
 
