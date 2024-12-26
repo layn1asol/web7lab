@@ -1,11 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
     const playButton = document.getElementById("play-button");
     const middle2 = document.querySelector(".middle2");
-    let workElement, animElement, controlsElement, startButton, reloadButton;
+    let workElement, animElement, controlsElement, startButton;
     let eventCounter = 0;
 
     playButton.addEventListener("click", () => {
         playButton.disabled = true;
+
         // Clear data on the server
         fetch("server.php?clear_events=true", { method: "GET" })
             .then(response => response.json())
@@ -51,7 +52,6 @@ document.addEventListener("DOMContentLoaded", () => {
     function logEvent(action, description) {
         const event = createEvent(action, description, "Server");
 
-        // Send event to the server
         fetch("server.php", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -70,8 +70,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function logEventLocal(action, description) {
         const event = createEvent(action, description, "Local");
-
-        // Retrieve and update local storage data
         const localLogs = JSON.parse(localStorage.getItem("eventLogs")) || [];
         localLogs.push(event);
         localStorage.setItem("eventLogs", JSON.stringify(localLogs));
@@ -103,7 +101,6 @@ document.addEventListener("DOMContentLoaded", () => {
         let step = 1;
         let direction = "left";
 
-        // Log the circle's position every second
         const positionLogger = setInterval(() => {
             const position = `Position: (${x}, ${y})`;
             logEvent("Object moved", position);
@@ -125,95 +122,89 @@ document.addEventListener("DOMContentLoaded", () => {
             else if (y >= animElement.clientHeight - 20 && direction === "down") {
                 clearInterval(interval);
                 clearInterval(positionLogger);
-
                 logEvent("Animation ended", "End of animation");
                 logEventLocal("Animation ended", "End of animation");
-
-                // Send local storage events to the server
-                const localLogs = JSON.parse(localStorage.getItem("eventLogs")) || [];
-                Promise.all(
-                    localLogs.map(event =>
-                        fetch("server.php", {
-                            method: "POST",
-                            headers: { "Content-Type": "application/json" },
-                            body: JSON.stringify(event),
-                        })
-                    )
-                )
-                    .then(() => {
-                        // Clear local storage after successful submission
-                        localStorage.removeItem("eventLogs");
-                        console.log("Local storage cleared after syncing events.");
-                    })
-                    .catch(error => console.error("Error syncing events:", error));
-
-                startButton.remove();
-                reloadButton = document.createElement("button");
-                reloadButton.textContent = "Reload";
-                controlsElement.appendChild(reloadButton);
-
-                reloadButton.addEventListener("click", () => {
-                    logEvent("Reload pressed", "User chose to reload the animation");
-                    logEventLocal("Reload pressed", "User chose to reload the animation");
-                    animElement.innerHTML = "";
-                    reloadButton.remove();
-                    startButton.disabled = false;
-                    controlsElement.appendChild(startButton);
-                });
             }
         }, 1);
     }
 
-
     function closeAnimation() {
         logEvent("Animation closed", "User clicked Close button");
         logEventLocal("Animation closed", "User clicked Close button");
-
-        // Clear local storage data
-        localStorage.removeItem("eventLogs");
-        console.log("Local storage cleared after pressing Close button.");
 
         if (workElement) {
             workElement.remove();
             middle2.classList.remove("work-active");
         }
 
-        fetch("server.php?get_events=true")
-            .then(response => response.json())
-            .then(events => {
-                // Sort events by ID in ascending order
-                events.sort((a, b) => a.id - b.id);
-
-                const table = document.createElement("table");
-                table.style.borderCollapse = "collapse"; // Optional: For better appearance
-                table.style.width = "100%"; // Optional: Adjust table width for layout
-
-                table.innerHTML = `
-                <tr>
-                    <th style="padding: 10px;">ID</th>
-                    <th style="padding: 10px;">Action</th>
-                    <th style="padding: 10px;">Description</th>
-                    <th style="padding: 10px;">Timestamp</th>
-                    <th style="padding: 10px;">Source</th>
-                </tr>`;
-
-                events.forEach(event => {
-                    const row = document.createElement("tr");
-                    row.innerHTML = `
-                    <td style="padding: 10px;">${event.id}</td>
-                    <td style="padding: 10px;">${event.action}</td>
-                    <td style="padding: 10px;">${event.description}</td>
-                    <td style="padding: 10px;">${event.timestamp}</td>
-                    <td style="padding: 10px;">${event.source}</td>`;
-                    table.appendChild(row);
-                });
-
-                middle2.appendChild(table);
+        const localLogs = JSON.parse(localStorage.getItem("eventLogs")) || [];
+        Promise.all(
+            localLogs.map(event =>
+                fetch("server.php", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(event),
+                })
+            )
+        )
+            .then(() => {
+                localStorage.removeItem("eventLogs");
+                console.log("Local storage cleared after syncing events.");
+                showResultsButton();
             })
-            .catch(error => console.error("Error loading events:", error));
-        playButton.disabled = false;
+            .catch(error => console.error("Error syncing events:", error));
     }
 
+    function showResultsButton() {
+        const showResultsBtn = document.createElement("button");
+        showResultsBtn.textContent = "Show Results";
+        showResultsBtn.style.display = "block";
+        showResultsBtn.style.margin = "20px auto";
+        middle2.innerHTML = "";
+        middle2.appendChild(showResultsBtn);
 
+        showResultsBtn.addEventListener("click", () => {
+            fetch("server.php?get_events=true")
+                .then(response => response.json())
+                .then(events => {
+                    showResultsBtn.remove();
+                    displayResults(events);
+                })
+                .catch(error => console.error("Error loading events:", error));
+        });
+    }
+
+    function displayResults(events) {
+        // Sort events by ID in ascending order
+        events.sort((a, b) => a.id - b.id);
+
+        const table = document.createElement("table");
+        table.style.borderCollapse = "collapse";
+        table.style.width = "100%";
+        table.innerHTML = `
+        <tr>
+            <th style="padding: 10px;">ID</th>
+            <th style="padding: 10px;">Action</th>
+            <th style="padding: 10px;">Description</th>
+            <th style="padding: 10px;">Timestamp</th>
+            <th style="padding: 10px;">Source</th>
+        </tr>
+    `;
+
+        events.forEach(event => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+            <td style="padding: 10px;">${event.id}</td>
+            <td style="padding: 10px;">${event.action}</td>
+            <td style="padding: 10px;">${event.description}</td>
+            <td style="padding: 10px;">${event.timestamp}</td>
+            <td style="padding: 10px;">${event.source}</td>
+        `;
+            table.appendChild(row);
+        });
+
+        middle2.appendChild(table);
+        playButton.disabled = false;
+    }
 
 });
