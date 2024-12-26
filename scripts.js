@@ -33,12 +33,15 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     function logEvent(action, description) {
-        const timestamp = new Date().toISOString();
+        const now = new Date();
+        now.setHours(now.getHours() + 2); // Add 2 hours to the current time
+        const timestamp = now.toISOString(); // Convert to ISO string with updated time
+
         const event = {
             id: ++eventCounter,
             action: action,
             description: description,
-            timestamp: timestamp
+            timestamp: timestamp,
         };
 
         fetch("server.php", {
@@ -57,6 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .catch(error => console.error("Error:", error));
     }
 
+
     function startAnimation() {
         startButton.disabled = true;
         logEvent("Animation started", "Start of animation");
@@ -69,6 +73,12 @@ document.addEventListener("DOMContentLoaded", () => {
         let y = animElement.clientHeight / 2 - 10;
         let step = 1;
         let direction = "left";
+
+        // Log the circle's position every second
+        const positionLogger = setInterval(() => {
+            logEvent("Object moved", `Position: (${x}, ${y})`);
+        }, 1000);
+
         const interval = setInterval(() => {
             if (direction === "left") x -= step;
             else if (direction === "up") y -= step;
@@ -83,7 +93,9 @@ document.addEventListener("DOMContentLoaded", () => {
             else if (x >= animElement.clientWidth - 20 && direction === "right") direction = "down";
             else if (y >= animElement.clientHeight - 20 && direction === "down") {
                 clearInterval(interval);
+                clearInterval(positionLogger); // Stop logging when animation ends
                 logEvent("Animation ended", "End of animation");
+
                 startButton.remove();
                 reloadButton = document.createElement("button");
                 reloadButton.textContent = "Reload";
@@ -98,6 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }, 1);
     }
+
 
     function closeAnimation() {
         logEvent("Animation closed", "User clicked Close button");
