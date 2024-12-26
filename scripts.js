@@ -42,6 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
             action: action,
             description: description,
             timestamp: timestamp,
+            source: "Server", // Added source property
         };
 
         fetch("server.php", {
@@ -59,7 +60,6 @@ document.addEventListener("DOMContentLoaded", () => {
             })
             .catch(error => console.error("Error:", error));
     }
-
 
     function startAnimation() {
         startButton.disabled = true;
@@ -102,6 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 controlsElement.appendChild(reloadButton);
 
                 reloadButton.addEventListener("click", () => {
+                    logEvent("Reload pressed", "User chose to reload the animation");
                     animElement.innerHTML = "";
                     reloadButton.remove();
                     startButton.disabled = false;
@@ -111,31 +112,31 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 1);
     }
 
-
     function closeAnimation() {
         logEvent("Animation closed", "User clicked Close button");
 
-        // Видаляємо анімацію
+        // Remove animation
         if (workElement) {
             workElement.remove();
             middle2.classList.remove("work-active");
         }
 
-        // Завантажуємо лог-файл та відображаємо його
+        // Load and display the log file
         fetch("server.php?get_events=true")
             .then(response => response.json())
             .then(events => {
                 const table = document.createElement("table");
-                table.innerHTML = `<tr><th>ID</th><th>Action</th><th>Description</th><th>Timestamp</th></tr>`;
+                table.innerHTML = `<tr><th>ID</th><th>Action</th><th>Description</th><th>Timestamp</th><th>Source</th></tr>`;
 
                 events.forEach(event => {
                     const row = document.createElement("tr");
                     row.innerHTML = `
-                    <td>${event.id}</td>
-                    <td>${event.action}</td>
-                    <td>${event.description}</td>
-                    <td>${event.timestamp}</td>
-                `;
+                        <td>${event.id}</td>
+                        <td>${event.action}</td>
+                        <td>${event.description}</td>
+                        <td>${event.timestamp}</td>
+                        <td>${event.source}</td>
+                    `;
                     table.appendChild(row);
                 });
 
@@ -144,9 +145,3 @@ document.addEventListener("DOMContentLoaded", () => {
             .catch(error => console.error("Error loading events:", error));
     }
 });
-
-
-
-
-
-

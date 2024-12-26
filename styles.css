@@ -100,7 +100,7 @@ body {
 }
 
 .middle2 {
-    color: black;
+    color: white;
     grid-column: 3 / 11;
     grid-row: 3 / 12;
     background-color: #484848;
